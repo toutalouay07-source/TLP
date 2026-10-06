@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Louay — AI Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --white: #f5f5f0;
+            --gray-1: #111111;
+            --gray-2: #1a1a1a;
+            --gray-3: #2a2a2a;
+            --gray-4: #444444;
+            --gray-5: #888888;
+            --accent: #f5f5f0;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 4rem;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-3);
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray-5);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-cta {
+            background: var(--white);
+            color: var(--black) !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            font-weight: 500 !important;
+            font-size: 0.85rem !important;
+            transition: opacity 0.2s !important;
+        }
+
+        .nav-cta:hover {
+            opacity: 0.85;
+            color: var(--black) !important;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 6rem 4rem;
+        }
+
+        /* HERO */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 7rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gray-5);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 7vw, 6.5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+        }
+
+        .hero-title em {
+            font-style: normal;
+            color: var(--gray-4);
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--gray-5);
+            max-width: 500px;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--black);
+            padding: 0.85rem 2rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.85;
+        }
+
+        .btn-ghost {
+            color: var(--gray-5);
+            font-size: 0.95rem;
+            text-decoration: none;
+            padding: 0.85rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s;
+        }
+
+        .btn-ghost:hover {
+            color: var(--white);
+        }
+
+        .hero-bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--gray-3) 1px, transparent 1px),
+                linear-gradient(90deg, var(--gray-3) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.15;
+            pointer-events: none;
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+        }
+
+        /* DIVIDER */
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: var(--gray-3);
+        }
+
+        /* SECTION LABEL */
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gray-5);
+            margin-bottom: 3rem;
+        }
+
+        /* PROJECTS */
+        #projects {
+            padding-top: 5rem;
+        }
+
+        .projects-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+            gap: 2rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .section-title em {
+            font-style: normal;
+            color: var(--gray-4);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5px;
+            background: var(--gray-3);
+            border: 1px solid var(--gray-3);
+        }
+
+        .project-card {
+            background: var(--black);
+            padding: 2.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card a {
+            text-decoration: none;
+        }
+        .project-card:hover {
+            background: var(--gray-1);
+        }
+
+        .project-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .project-year {
+            font-size: 0.75rem;
+            color: var(--gray-5);
+            font-weight: 400;
+        }
+
+        .project-tag {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            background: var(--gray-2);
+            color: var(--gray-5);
+            padding: 0.3rem 0.75rem;
+            border-radius: 100px;
+            border: 1px solid var(--gray-3);
+        }
+
+        .project-name {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+            color: var(--white);
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--gray-5);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .project-stack {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stack-pill {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--gray-5);
+            border: 1px solid var(--gray-3);
+            padding: 0.25rem 0.65rem;
+            border-radius: 100px;
+        }
+
+        .project-arrow {
+            position: absolute;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--gray-3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-5);
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .project-card:hover .project-arrow {
+            background: var(--white);
+            color: var(--black);
+            border-color: var(--white);
+        }
+
+        /* SKILLS */
+        #skills {
+            padding-top: 5rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--gray-3);
+            border: 1px solid var(--gray-3);
+            margin-top: 3rem;
+        }
+
+        .skill-block {
+            background: var(--black);
+            padding: 2rem 2.5rem;
+        }
+
+        .skill-block-title {
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gray-5);
+            margin-bottom: 1.25rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--white);
+            background: var(--gray-2);
+            border: 1px solid var(--gray-3);
+            padding: 0.35rem 0.85rem;
+            border-radius: 100px;
+        }
+
+        /* CERTS */
+        #certifications {
+            padding-top: 5rem;
+        }
+
+        .cert-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            background: var(--gray-3);
+            border: 1px solid var(--gray-3);
+            margin-top: 3rem;
+        }
+
+        .cert-item {
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 2.5rem;
+            gap: 2rem;
+            transition: background 0.2s;
+        }
+
+        .cert-item:hover {
+            background: var(--gray-1);
+        }
+
+        .cert-issuer {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--gray-5);
+            min-width: 120px;
+        }
+
+        .cert-name {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--white);
+            flex: 1;
+        }
+
+        .cert-year {
+            font-size: 0.8rem;
+            color: var(--gray-5);
+        }
+
+        /* CONTACT */
+        #contact {
+            padding-top: 5rem;
+            padding-bottom: 8rem;
+        }
+
+        .contact-inner {
+            background: var(--gray-1);
+            border: 1px solid var(--gray-3);
+            padding: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .contact-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            max-width: 500px;
+        }
+
+        .contact-title em {
+            font-style: normal;
+            color: var(--gray-4);
+        }
+
+        /* ===== ZONE D'INTÉGRATION CALENDRIER ===== */
+        /* Remplace ce bloc par ton widget Cal.com ou Calendly */
+        .contact-widget-zone {
+            background: var(--gray-2);
+            border: 1px dashed var(--gray-4);
+            border-radius: 8px;
+            min-width: 300px;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 2rem;
+            color: var(--gray-5);
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .contact-widget-zone .widget-placeholder-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-widget-zone code {
+            font-size: 0.75rem;
+            background: var(--gray-3);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            color: var(--gray-5);
+            font-family: monospace;
+        }
+
+        /* ===== FIN ZONE INTÉGRATION ===== */
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--gray-3);
+            padding: 2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: var(--gray-5);
+            
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            font-size: 0.8rem;
+            color: var(--gray-5);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-inner {
+                flex-direction: column;
+                padding: 2rem;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+
+            .hero-title {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+
+            .projects-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .contact-widget-zone {
+                min-width: unset;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="#hero" class="nav-logo">Touta Louay.</a>
+        <ul class="nav-links">
+            <li><a href="#projects">Projets</a></li>
+            <li><a href="#skills">Stack</a></li>
+            <li><a href="#certifications">Certifs</a></li>
+            <li><a href="#contact" class="nav-cta">Me contacter</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-bg-grid"></div>
+        <p class="hero-eyebrow">Louay — AI Engineer  · Rabat, Maroc</p>
+        <h1 class="hero-title">
+            Transforming Data <br>
+            <em>into Intelligent </em><br>
+            Solutions
+        </h1>
+        <p class="hero-sub">
+            Étudiant passionné par l'IA locale, les LLMs . Je
+            transforme des idées en produits concrets.
+        </p>
+        <div class="hero-actions">
+            <a href="#projects" class="btn-primary">Voir mes projets</a>
+            <a href="#contact" class="btn-ghost">Me contacter →</a>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- PROJETS -->
+    <section id="projects">
+        <div class="projects-header">
+            <h2 class="section-title">Projets <em>sélectionnés</em></h2>
+            <p style="font-size:0.9rem; color:var(--gray-5); max-width:280px; line-height:1.6;">
+                Des projets concrets, construits pour apprendre et pour montrer ce dont je suis capable.
+            </p>
+        </div>
+
+        <div class="project-grid">
+
+            <!-- PROJET 1 — CHATBOT -->
+            
+            <div class="project-card">
+                <a href="">
+                <div class="project-card-top">
+                    <span class="project-year">2026</span>
+                    <span class="project-tag">LLM · Local AI</span>
+                </div>
+                <h3 class="project-name">CLI Chatbot avec LangChain</h3>
+                <p class="project-desc">
+                    Chatbot en ligne de commande utilisant LangChain et LM Studio pour l'inférence locale. Inclut une
+                    gestion de la mémoire conversationnelle, un spinner animé, et une roadmap vers une app web Django.
+                </p>
+                <div class="project-stack">
+                    <span class="stack-pill">Python</span>
+                    <span class="stack-pill">LangChain</span>
+                    <span class="stack-pill">LM Studio</span>
+                </div>
+                <div class="project-arrow">→</div>
+                </a>
+            </div>
+            
+            <!-- PROJET 2 — RAG/Memory -->
+            <div class="project-card">
+                <a href="">
+                <div class="project-card-top">
+                    <span class="project-year">2026</span>
+                    <span class="project-tag">RAG & Memory · Django</span>
+                </div>
+                <h3 class="project-name">Assistant RAG — Documents</h3>
+                <p class="project-desc">
+                    Application web Django avec streaming et système RAG pour interroger des documents en langage
+                    naturel. Déployé localement avec Ollama.
+                </p>
+                <div class="project-stack">
+                    
+                    <span class="stack-pill">Django</span>
+                    <span class="stack-pill">LangChain</span>
+                    <span class="stack-pill">Ollama</span>
+                </div>
+                <div class="project-arrow">→</div>
+                </a>
+            </div>
+
+
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- STACK -->
+    <section id="skills">
+        <p class="section-label">Stack technique</p>
+        <h2 class="section-title">Development Stack & <em>AI</em></h2>
+
+        <div class="skills-grid">
+            <div class="skill-block">
+                <p class="skill-block-title">IA & LLM</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">LangChain</span>
+                    <span class="skill-tag">LangGraph</span>
+                    <span class="skill-tag">LM Studio</span>
+                    <span class="skill-tag">Ollama</span>
+                    <span class="skill-tag">CrewAI</span>
+                    
+                </div>
+            </div>
+            <div class="skill-block">
+                <p class="skill-block-title">Python & Data</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">PyTorch</span>
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">Scikit-learn</span>
+                    <span class="skill-tag">Matplotlib</span>
+                    <span class="skill-tag">SQL</span>
+                </div>
+            </div>
+            <div class="skill-block">
+                <p class="skill-block-title">Web & Déploiement</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">Django</span>
+                    <span class="skill-tag">Streamlit</span>
+                    <span class="skill-tag">HTML/CSS</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">jQuery</span>
+                    <span class="skill-tag">GitHub & Git</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications">
+        <p class="section-label">Certifications</p>
+        <h2 class="section-title">Formations <em>validées</em></h2>
+
+        <div class="cert-list">
+            <div class="cert-item">
+                <span class="cert-issuer">IBM</span>
+                <span class="cert-name">Introduction to Artificial Intelligence</span>
+                
+            </div>
+            <div class="cert-item">
+                <span class="cert-issuer">IBM</span>
+                <span class="cert-name">Python for Data Science, AI & Development</span>
+                
+            </div>
+            <div class="cert-item">
+                <span class="cert-issuer">IBM</span>
+                <span class="cert-name">AI Engineering Professional Certificate</span>
+                
+            </div>
+            <div class="cert-item">
+                <span class="cert-issuer">Harvard</span>
+                <span class="cert-name">CS50 — Introduction to Computer Science</span>
+                
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="contact-inner">
+            <div>
+                <p class="section-label" style="margin-bottom:1rem;">Contact</p>
+                <h2 class="contact-title">
+                    Prêt à<br>
+                    <em>avancer ensemble ?</em>
+                </h2>
+                <p style="font-size:0.95rem; color:var(--gray-5); margin-top:1.5rem; max-width:360px; line-height:1.7;">
+                    Je suis disponible pour tout développement et conception . Discutons de ton projet ou de tes
+                    opportunités.
+                </p>
+            </div>
+
+            <!--
+      =====================================================
+      ZONE D'INTÉGRATION — REMPLACE CE BLOC
+      Colle ici ton script Cal.com, Calendly ou autre :
+
+      Exemple Cal.com :
+      <div id="my-cal-inline" style="width:100%;height:100%;overflow:scroll"></div>
+      <script>
+        (function (C, A, L) { ... })(window, document, "Calendly");
+      </script>
+
+      Exemple Calendly :
+      <div class="calendly-inline-widget" data-url="https://calendly.com/TON_LIEN" style="min-width:320px;height:630px;"></div>
+      <script async src="https://assets.calendly.com/assets/external/widget.js"></script>
+      =====================================================
+    -->
+            <div class="contact-widget-zone">
+                <div class="widget-placeholder-icon">📅</div>
+                <strong style="color:var(--white); font-size:0.9rem;">Intégration calendrier ici</strong>
+                <p>Colle ton script Cal.com ou Calendly dans le fichier HTML à cet endroit.</p>
+                <code>&lt;!-- ZONE WIDGET --&gt;</code>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 Louay — Tous droits réservés.</p>
+        <ul class="footer-links">
+            <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+            <li><a href="https://linkedin.com/" target="_blank">LinkedIn</a></li>
+            <li><a href="mailto:ton@email.com">Email</a></li>
+        </ul>
+    </footer>
+
+</body>
+
+</html>
